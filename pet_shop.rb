@@ -104,35 +104,31 @@ end
 
 def sell_pet_to_customer(shop, pet, customer)
 
-  can_i_have_pet = find_pet_by_name(shop, pet)
-
-  liquidity = customer_can_afford_pet(customer, pet)
-
-  pet_in_stock = false
-
-  if can_i_have_pet == pet
-    pet_in_stock = true
-  else
-    pet_in_stock = false
-  end
-
-  if liquidity ==  true  && pet_in_stock == true
-  # if customer_can_afford_pet(customer, pet) = true
-      add_pet_to_customer(customer, pet)
-            remove_customer_cash(customer, pet[:price])
-            increase_pets_sold(shop, 1)
-            remove_pet_by_name(shop, pet)
-            add_or_remove_cash(shop, pet[:price])
+  return nil unless pet
+  return nil unless customer_can_afford_pet(customer, pet)
+  # can_i_have_pet = find_pet_by_name(shop, pet)
+  #
+  # liquidity = customer_can_afford_pet(customer, pet)
+  #
+  # pet_in_stock = false
+  #
+  # if can_i_have_pet == pet
+  #   pet_in_stock = true
+  # else
+  #   pet_in_stock = false
+  # end
+  #
+  # if liquidity ==  true  && pet_in_stock == true
+  # # if customer_can_afford_pet(customer, pet) = true
+  add_pet_to_customer(customer, pet)
+  remove_customer_cash(customer, pet[:price])
+  increase_pets_sold(shop, 1)
+  remove_pet_by_name(shop, pet)
+  add_or_remove_cash(shop, pet[:price])
     # else
       # return false
   end
 
-
-
-
-
-
-end
 
 
 # def credit_check()
